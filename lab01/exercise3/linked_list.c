@@ -1,6 +1,7 @@
+// Copyright 2023 Muhammad Hayat
 #include <stdio.h>
 #include <stdlib.h>
-#include "linked_list.h"
+#include "/home/hayat/C_programming/su21-lab-starter/lab01/exercise3/linked_list.h"
 
 /* returns a new node whose data is set to DATA and next is set to NULL */
 Node *create_node(int data) {
@@ -55,7 +56,7 @@ void print_list(struct Node *head) {
 
 /* Iteratively reverses a linked list whose first node is HEAD */
 void reverse_list(struct Node **head) {
-    if (head == NULL) {
+    if (head == NULL || *head == NULL) {
         return;
     }
     struct Node *curr = *head;
@@ -77,8 +78,13 @@ void add_to_back(Node **head, int data) {
         return;
     }
     Node *new_node = create_node(data);
+  if (*head == NULL) {
+    *head = new_node;
+        return;
+    }
+    // Node *new_node = create_node(data);
     Node *prev;
-    for (Node *curr = *head; curr != NULL; curr = curr->next) {
+    for (Node *curr = *head; curr!= NULL; curr = curr->next) {
         prev = curr;
     }
     prev->next = new_node;

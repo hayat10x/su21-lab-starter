@@ -1,7 +1,8 @@
+// Copyright 2023 Muhammad Hayat
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "linked_list.h"
+#include "/home/hayat/C_programming/su21-lab-starter/lab01/exercise3/linked_list.h"
 
 int main(int argc, char **argv) {
     printf("Running tests...\n\n");
@@ -27,17 +28,18 @@ int main(int argc, char **argv) {
 
     /************ add_to_back test ***********/
     Node *head_2 = NULL;
+    // Node *head_2 = malloc(sizeof(struct Node));
     add_to_back(&head_2, 15);
-    add_to_back(&head_2, 12);
-    add_to_back(&head_2, 18);
-    int expected_values_2[] = {15, 12, 18};
-    Node *curr_2 = head_2;
-    for (int i = 0; i < 3; ++i) {
-        assert(curr_2->data == expected_values_2[i]);
+     add_to_back(&head_2, 12);
+     add_to_back(&head_2, 18);
+     int expected_values_2[] = {15, 12, 18};
+     Node *curr_2 = head_2;
+     for (int i = 0; i < 3; ++i) {
+         assert(curr_2->data == expected_values_2[i]);
         curr_2 = curr_2->next;
-    }
-    free_list(head_2);
+     }
+     free_list(head_2);
 
     printf("Congrats! All of the test cases passed!\n");
-    return 0;
+     return 0;
 }
