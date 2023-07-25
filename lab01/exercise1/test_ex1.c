@@ -1,11 +1,12 @@
+// Copyright 2023 Muhammad Hayat
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
-#include "ex1.h"
+#include "/home/hayat/C_programming/su21-lab-starter/lab01/exercise1/ex1.h"
 
 int main(int argc, char **argv) {
     printf("Running tests...\n\n");
-    /************ Part 1 Test Cases ************/
+    /************ Part 1 test Cases ************/
     char *str = "hello world!";
 
     int num_l = num_occurrences(str, 'l');
@@ -14,11 +15,14 @@ int main(int argc, char **argv) {
     int num_z = num_occurrences(str, 'z');
     assert(num_z == 0);
 
+    int num_o = num_occurrences(str, 'o');
+    assert(num_o == 2);
+
     /* TODO: Think of a scenario that is not tested by the current test cases. Create one additional test case to test this scenario. */
 
     printf("Congrats! If you have made it to this line, your Part 1 Test cases are all passing!\n");
 
-    /************ Part 2 Test Cases ************/
+    // /************ Part 2 Test Cases ************/
     DNA_sequence dna_seq_1;
     strcpy(dna_seq_1.sequence, "ACTTTGAAC");
     compute_nucleotide_occurrences(&dna_seq_1);
