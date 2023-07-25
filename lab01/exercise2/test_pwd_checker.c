@@ -1,6 +1,7 @@
+// Copyright 2023 Muhammad Hayat
 #include <assert.h>
 #include <stdio.h>
-#include "pwd_checker.h"
+#include "/home/hayat/C_programming/su21-lab-starter/lab01/exercise2/pwd_checker.h"
 
 int main() {
     printf("Running tests...\n\n");
@@ -10,7 +11,6 @@ int main() {
     const char *test1_pwd = "qrtv?,mp!ltrA0b13rab4ham";
     bool test1 = check_password(test1_first, test1_last, test1_pwd);
     assert(test1);
-
     printf("Congrats! The first test case is now passing. You should remove the assert statements that you added "
            "to pwd_checker.c because these correspond to the first test case and will not necessarily work for the remaining "
            "test cases!\n\n");
