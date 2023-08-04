@@ -17,7 +17,7 @@ main:
 
     # Load the address of the "square" function into a1 (hint: check out "la" on the green sheet)
     ### YOUR CODE HERE ###
-
+    la a1, square
 
     # Issue the call to map
     jal ra, map
@@ -36,7 +36,7 @@ main:
     
     # Load the address of the "decrement" function into a1 (should be very similar to before)
     ### YOUR CODE HERE ###
-
+    la a1, decrement
 
     # Issue the call to map
     jal ra, map
@@ -52,7 +52,10 @@ main:
 map:
     # Prologue: Make space on the stack and back-up registers
     ### YOUR CODE HERE ###
-
+    addi sp, sp, -12 #1
+    sw s0, 0(sp) #2
+    sw s1, 4(sp) #3
+    sw ra, 8(sp)
     beq a0, x0, done # If we were given a null pointer (address 0), we're done.
 
     add s0, a0, x0 # Save address of this node in s0
@@ -60,35 +63,49 @@ map:
 
     # Remember that each node is 8 bytes long: 4 for the value followed by 4 for the pointer to next.
     # What does this tell you about how you access the value and how you access the pointer to next?
-
+    # Ans: The linked list nodes are 8 bytes long, with 4 bytes for the value and 4 bytes for the pointer to the next node.
+    #      To access the value, use an offset of 0, and to access the pointer, use an offset of 4 bytes.
     # Load the value of the current node into a0
     # THINK: Why a0?
+    # Ans: Because we have to again pass this to s0 for adding
     ### YOUR CODE HERE ###
-
+    lw a0, 0(s0)
+    
     # Call the function in question on that value. DO NOT use a label (be prepared to answer why).
     # Hint: Where do we keep track of the function to call? Recall the parameters of "map".
     ### YOUR CODE HERE ###
-
+    jalr s1
+    
     # Store the returned value back into the node
     # Where can you assume the returned value is?
+    # Ans: The returned value wiill be in a0
     ### YOUR CODE HERE ###
-
+    sw a0, 0(s0)
     # Load the address of the next node into a0
     # The address of the next node is an attribute of the current node.
     # Think about how structs are organized in memory.
     ### YOUR CODE HERE ###
+    lw a0, 4(s0)
 
     # Put the address of the function back into a1 to prepare for the recursion
     # THINK: why a1? What about a0?
+    # Ans: Because a1 is for storing function address and a0 for variable 
     ### YOUR CODE HERE ###
-
+    mv a1, s1
+    
     # Recurse
     ### YOUR CODE HERE ###
-
+    
+    jal ra, map
+    
 done:
     # Epilogue: Restore register values and free space from the stack
     ### YOUR CODE HERE ###
 
+    lw s0, 0(sp)    #4
+    lw s1, 4(sp)    #5
+    lw ra , 8(sp)
+    addi sp, sp, 12  #6
     jr ra # Return to caller
 
 # === Definition of the "square" function ===
