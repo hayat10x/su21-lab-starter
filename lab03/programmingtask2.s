@@ -5,7 +5,7 @@ number: .word 3         # stored number in memory
 dataarray:
 # dataarray functin begin
     # BEGIN PROLOGUE
-    addi sp, sp, -44    # begin by adding space on stack
+    addi sp, sp, -48    # begin by adding space on stack
     sw s0, 0(sp)        # Storing s0 old value
     sw ra, 4(sp)        # Storing ra old value
     # from 4 onward I have assigned the memory in stack in array of size 10
