@@ -9,6 +9,7 @@ exp_inc_array_result:
     .word 2 3 4 5 6
 
 .text
+
 main:
     # We test our program by loading a bunch of random values
     # into a few saved registers - if any of these are modified
