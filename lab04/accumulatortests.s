@@ -1,7 +1,7 @@
 .import lotsofaccumulators.s
 
 .data
-inputarray: .word 1,2,3,4,5,6,7,0
+inputarray: .word 0,1,2,3,4,5,6,7,0
 
 TestPassed: .asciiz "Test Passed!"
 TestFailed: .asciiz "Test Failed!"
@@ -16,9 +16,40 @@ TestFailed: .asciiz "Test Failed!"
 #Modify the test so that you can catch the bugs in four of the five solutions!
 main:
     la a0 inputarray
-    jal accumulatorone
-    li t0 28
-    beq a0 t0 Pass
+    # for accumulator 1
+    # li s0 -1
+    # addi sp sp -4 
+    # sw s0 0(sp)
+    # jal accumulatorone
+    # lw t1 0(sp)
+    # addi sp sp 4
+    # li t0 28
+    # bne s0 t1 Fail
+    # beq a0 t0 Pass
+
+    # for accumaltor 2
+    # li t0 50
+    # addi sp sp -4
+    # sw t0 4(sp)
+    # jal accumulatortwo
+    # lw t0 4(sp)
+    # addi sp sp 4
+    # li t1 50
+    # bne t0 t1 Fail
+    # li t0 28
+    # beq a0 t0 Pass
+     
+     # for accumaltor 4
+     # li t2 50  # didn't initialized t2 in function
+     # jal accumulatorfour
+     # li t0 28
+     # beq a0 t0 Pass
+     
+     # for accumaltor 5
+       jal accumulatorfive
+       li t0 0
+       beq a0 t0 Pass 
+     
 Fail:
     la a0 TestFailed
     jal print_string
